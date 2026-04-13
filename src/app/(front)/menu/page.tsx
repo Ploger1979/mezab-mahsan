@@ -33,7 +33,14 @@ export default function MenuPage() {
     loadData();
   }, []);
 
-  const filteredProducts: Product[] = activeCategory === 'الكل' ? dbProducts : dbProducts.filter(p => p.category === activeCategory);
+  const categoryOrder = ["المشويات", "الشاورما", "الأكلات الشعبية", "الحلويات"];
+
+  const filteredProducts: Product[] = (activeCategory === 'الكل' ? dbProducts : dbProducts.filter(p => p.category === activeCategory))
+    .sort((a, b) => {
+        const indexA = categoryOrder.indexOf(a.category);
+        const indexB = categoryOrder.indexOf(b.category);
+        return (indexA === -1 ? 99 : indexA) - (indexB === -1 ? 99 : indexB);
+    });
 
   if (!mounted) return null;
 

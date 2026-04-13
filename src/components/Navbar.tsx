@@ -4,11 +4,14 @@ import { usePathname } from 'next/navigation';
 import ThemeToggle from './ThemeToggle';
 import SocialLinks from './SocialIcons';
 import { useEffect, useState } from 'react';
+import { useCart } from '@/context/CartContext';
 
 export default function Navbar() {
   const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { cartItems, toggleCart } = useCart();
+  const cartItemCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   useEffect(() => {
     setMounted(true);
@@ -58,6 +61,20 @@ export default function Navbar() {
 
           <div className="hidden md:flex items-center gap-4 lg:gap-5">
             <SocialLinks idSuffix="desktop-nav" />
+            
+            {mounted && (
+              <button onClick={toggleCart} className="relative p-2.5 bg-gray-100 dark:bg-gray-800 rounded-xl hover:bg-orange-100 dark:hover:bg-orange-900/30 text-gray-700 dark:text-gray-300 hover:text-orange-600 dark:hover:text-orange-400 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                {cartItemCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-orange-600 text-white min-w-[20px] h-5 rounded-full flex items-center justify-center text-xs font-bold px-1 ring-2 ring-white dark:ring-[#0B0E14]">
+                    {cartItemCount}
+                  </span>
+                )}
+              </button>
+            )}
+
             <ThemeToggle />
             <Link 
               href="/menu" 
@@ -69,6 +86,20 @@ export default function Navbar() {
 
           {/* Mobile Menu Button */}
           <div className="flex md:hidden items-center gap-4">
+            
+            {mounted && (
+              <button onClick={toggleCart} className="relative p-2 text-gray-700 dark:text-gray-300 hover:text-orange-600 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                {cartItemCount > 0 && (
+                  <span className="absolute 0 top-0 right-0 bg-orange-600 text-white min-w-[18px] h-5 rounded-full flex items-center justify-center text-[10px] font-bold px-1 ring-2 ring-white dark:ring-[#0B0E14] transform translate-x-1/4 -translate-y-1/4">
+                    {cartItemCount}
+                  </span>
+                )}
+              </button>
+            )}
+
             <ThemeToggle />
             <button 
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 

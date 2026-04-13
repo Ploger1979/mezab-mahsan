@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Cairo } from 'next/font/google';
 import Script from 'next/script';
+import { Providers } from '@/context/Providers';
 import './globals.css';
 
 const cairo = Cairo({
@@ -49,9 +50,10 @@ export default function RootLayout({
           <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] rounded-full bg-amber-100/30 dark:bg-[#1E1B4B]/30 blur-[130px] transition-all duration-700"></div>
           <div className="absolute top-[40%] right-[10%] w-[30%] h-[30%] rounded-full bg-orange-50/50 dark:bg-purple-900/10 blur-[100px] transition-all duration-700"></div>
         </div>
-
         {/* Global Components Layout (Z-10) delegated to route groups */}
-        {children}
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   );
