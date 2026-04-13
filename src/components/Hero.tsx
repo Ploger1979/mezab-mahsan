@@ -20,12 +20,12 @@ export default function Hero() {
         </h2>
         
         <p className="mt-8 text-xl md:text-[22px] text-gray-600 dark:text-gray-300 max-w-3xl font-medium leading-relaxed mb-12 transition-colors duration-500">
-          مشويات على الفحم، شاورما مميزة، وأكلات سودانية بطابع عصري.<br className="hidden md:block" /> تجربة فريدة تملأ حواسك من أول لقمة.
+          مشويات على الفحم، شاورما مميزة، وأكلات سودانية بطابع عصري.<br className="hidden md:block" /> كل طبق يروي قصة عراقة تتذوقها في كل لقمة.
         </p>
         
         <div className="flex flex-col sm:flex-row gap-5 justify-center w-full sm:w-auto mt-4">
           <Link href="/menu" className="w-full sm:w-auto bg-orange-600 hover:bg-orange-500 dark:hover:bg-orange-500 text-white px-10 py-5 rounded-2xl font-black text-lg shadow-[0_0_30px_rgba(234,88,12,0.2)] hover:shadow-[0_0_40px_rgba(234,88,12,0.4)] transition-all transform hover:-translate-y-1 text-center">
-            تصفح القائمة
+            اكتشف أشهى الأطباق
           </Link>
           <a href="/contact" className="w-full sm:w-auto bg-white/80 dark:bg-gray-800/80 backdrop-blur-md hover:bg-white dark:hover:bg-gray-700 text-gray-900 dark:text-white border border-gray-200/80 dark:border-gray-700 px-10 py-5 rounded-2xl font-black text-lg shadow-sm hover:shadow-lg transition-all transform hover:-translate-y-1 text-center">
             تواصل معنا
